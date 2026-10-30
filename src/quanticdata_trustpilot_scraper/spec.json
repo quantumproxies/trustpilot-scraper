@@ -1,0 +1,80 @@
+{
+ "cli": "trustpilot-scraper",
+ "name": "Trustpilot Scraper",
+ "version": "0.1.0",
+ "description": "Trustpilot scraper for Python and the command line: public reviews of any company by its domain, with rating, title, text, dates, verification label, reviewer country and the company reply, plus TrustScore and review count, as JSON or CSV. Free and open source; sign in with your QuanticData account, no proxies or headless browser to run.",
+ "links": {
+  "repo": "https://github.com/quantumproxies/trustpilot-scraper",
+  "page": "https://quanticdata.io/collectors/trustpilot-scraper-api/?utm_source=github&utm_medium=cli&utm_campaign=trustpilot-scraper",
+  "billing": "https://app.quanticdata.io/billing?utm_source=github&utm_medium=cli&utm_campaign=trustpilot-scraper",
+  "pricing": "https://quanticdata.io/pricing/?utm_source=github&utm_medium=cli&utm_campaign=trustpilot-scraper"
+ },
+ "commands": [
+  {
+   "name": "reviews",
+   "collector": "trustpilot_reviews",
+   "method": "reviews",
+   "help": "public Trustpilot reviews of a company",
+   "description": "Public Trustpilot reviews of any company — rating, text, dates, verification and the company reply.",
+   "positional": "domain",
+   "positional_is_list": false,
+   "positional_optional": false,
+   "columns": [
+    "rank",
+    "date",
+    "rating",
+    "verified",
+    "reviewer_country",
+    "title"
+   ],
+   "sample": "trustpilot_reviews",
+   "inputs": [
+    {
+     "name": "domain",
+     "type": "string",
+     "required": true,
+     "description": "The reviewed company's domain, e.g. wise.com (not the Trustpilot URL).",
+     "arg": "domain"
+    },
+    {
+     "name": "sort",
+     "type": "string",
+     "required": false,
+     "description": "Review order (default recency).",
+     "enum": [
+      "recency",
+      "relevance"
+     ],
+     "default": "recency",
+     "arg": "sort"
+    },
+    {
+     "name": "stars",
+     "type": "integer",
+     "required": false,
+     "description": "Only reviews with this star rating (1–5). Omit for all.",
+     "min": 1,
+     "max": 5,
+     "arg": "stars"
+    },
+    {
+     "name": "country",
+     "type": "string",
+     "required": false,
+     "description": "Country to run the request from, as an ISO 3166-1 alpha-2 code (us, gb, de...).",
+     "arg": "country"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many reviews to deliver at most (1–100). You pay only for delivered reviews.",
+     "min": 1,
+     "max": 100,
+     "default": 20,
+     "arg": "max_results"
+    }
+   ]
+  }
+ ]
+}
